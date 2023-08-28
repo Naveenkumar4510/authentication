@@ -7,6 +7,9 @@ const ejs = require("ejs");
 const mongoose=require("mongoose");
 const encrypt=require("mongoose-encryption");
 
+// const uname=process.env.USERNAME;
+// const pass=process.env.PASSWORD;
+
 const app = express();
 
 console.log(process.env.API_KEY);
@@ -17,7 +20,12 @@ app.use(bodyParser.urlencoded({
   extended:true
 }));
 
-mongoose.connect("mongodb://127.0.0.1:27017/SecretsDB", { useNewUrlParser: true });
+
+mongoose.connect("mongodb+srv://naveenkuma1045:naveen4510@cluster0.35fqhte.mongodb.net/SecretsDB", { useNewUrlParser: true });
+
+//mongodb+srv://" + uname + ":" + pass + "@cluster0.57qzj.mongodb.net/todolistDB
+
+//mongodb+srv://naveenkuma1045:<password>@cluster0.35fqhte.mongodb.net/?retryWrites=true&w=majority
 
 const userSchema=mongoose.Schema({
   email:String,
@@ -95,7 +103,26 @@ User.findOne({
 
 });
 
-app.listen(3000,function()
-{
-  console.log("Server started on port 3000");
-})
+// app.listen(3000,function()
+// {
+//   console.log("Server started on port 3000");
+// })
+
+// let port = process.env.PORT;
+// if (port == null || port == "") {
+//   port = 3000;
+// }
+ 
+// app.listen(port, function() {
+//   console.log("Server started succesfully");
+// });
+
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+ 
+app.listen(port, function() {
+  console.log("Server started succesfully");
+});
